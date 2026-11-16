@@ -2,7 +2,7 @@
 set -u
 MAC_KEY='ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHtWNNsQaEzch6vGUsyY4mnQCjsKyDfqW01e6RCUs6Gi fleet-mesh-mac'
 fail() { printf '%s\n' "$1" >&2; exit 1; }
-[ -n "${TOKEN:-}" ] || fail "TOKEN is required"
+[ -n "${TOKEN:-}" ] && [ "$TOKEN" != "..." ] || fail "TOKEN is required"
 OS="$(uname -s)"
 ARCH="$(uname -m)"
 case "$ARCH" in
@@ -97,5 +97,5 @@ KEYFILE="$HOME/.ssh/authorized_keys"
 touch "$KEYFILE"
 chmod 600 "$KEYFILE"
 add_key "$MAC_KEY"
-if [ -n "${KEY:-}" ]; then add_key "$KEY"; fi
+if [ -n "${KEY:-}" ] && [ "$KEY" != "..." ]; then add_key "$KEY"; fi
 printf '%s\n' "done"

@@ -1,5 +1,5 @@
 $ErrorActionPreference = "Stop"
-if (-not $env:TOKEN) { Write-Error "TOKEN is required"; exit 1 }
+if (-not $env:TOKEN -or $env:TOKEN -eq "...") { Write-Error "TOKEN is required"; exit 1 }
 $macKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHtWNNsQaEzch6vGUsyY4mnQCjsKyDfqW01e6RCUs6Gi fleet-mesh-mac"
 function Add-KeyLine($Path, $Line) {
   if (-not (Test-Path $Path)) { New-Item -ItemType File -Path $Path -Force | Out-Null }
@@ -41,6 +41,6 @@ $adminDir = "C:\ProgramData\ssh"
 New-Item -ItemType Directory -Path $adminDir -Force | Out-Null
 $adminKeys = Join-Path $adminDir "administrators_authorized_keys"
 Add-KeyLine $adminKeys $macKey
-if ($env:KEY) { Add-KeyLine $adminKeys $env:KEY }
+if ($env:KEY -and $env:KEY -ne "...") { Add-KeyLine $adminKeys $env:KEY }
 & icacls $adminKeys /inheritance:r /grant "Administrators:F" /grant "SYSTEM:F" | Out-Null
 Write-Output "done"
