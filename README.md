@@ -35,17 +35,17 @@ TOKEN="..." KEY="..." bash -c "$(curl -fsSL https://raw.githubusercontent.com/wk
 Windows：
 
 ```powershell
-$env:TOKEN="..."; $env:KEY="..."; irm https://ghfast.top/https://raw.githubusercontent.com/wkyqian/dev-init/main/init.ps1 | iex
+$env:TOKEN="..."; $env:KEY="..."; irm https://cdn.jsdelivr.net/gh/wkyqian/dev-init@main/init.ps1 | iex
 ```
 
 Linux：
 
 ```bash
-TOKEN="..." KEY="..." bash -c "$(curl -fsSL https://ghfast.top/https://raw.githubusercontent.com/wkyqian/dev-init/main/init.sh)"
+TOKEN="..." KEY="..." bash -c "$(curl -fsSL https://cdn.jsdelivr.net/gh/wkyqian/dev-init@main/init.sh)"
 ```
 
 macOS：
 
 ```bash
-TOKEN="..." KEY="..." bash -c "$(curl -fsSL https://ghfast.top/https://raw.githubusercontent.com/wkyqian/dev-init/main/init.sh)"
+TOKEN="..." KEY="..." bash -c "$(curl -fsSL https://cdn.jsdelivr.net/gh/wkyqian/dev-init@main/init.sh)"
 ```
